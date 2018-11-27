@@ -6,13 +6,26 @@ class Gui(tk.Frame):
     def __init__(self, master=None):
         tk.Frame.__init__(self, master)
         self.top_bar = tk.Frame(relief="raised")
-        self.col_one = tk.Frame(master)
+        self.col_one_top = tk.Frame(master)
+        self.col_one_bot = tk.Frame(master)
+        self.col_one_bot_canv = tk.Canvas(self.col_one_bot)
+        self.col_one_bot_scroll = tk.Scrollbar(self.col_one_bot, orient="vertical", command=self.col_one_bot_canv.yview)
+        self.col_one_bot_canv.configure(yscrollcommand=self.col_one_bot_scroll.set)
         self.col_two_top = tk.Frame(master)
         self.col_two_bot = tk.Frame(master, bd=2, relief="ridge")
+        self.col_two_bot_canv = tk.Canvas(self.col_two_bot)
+        self.col_two_bot_scroll = tk.Scrollbar(self.col_two_bot, orient="vertical", command=self.col_two_bot_canv.yview)
+        self.col_two_bot_canv.configure(yscrollcommand=self.col_two_bot_scroll.set)
         self.top_bar.grid(row=0, column=0, columnspan=5, sticky="ew")
-        self.col_one.grid(row=1, column=0, sticky="ns", rowspan=2)
+        self.col_one_top.grid(row=1, column=0, sticky="ns", rowspan=2)
+        self.col_one_bot.grid(row=3, column=0, sticky="ns")
+        self.col_one_bot_canv.grid(row=0, column=0, sticky="nsew")
+        self.col_one_bot_scroll.grid(row=0, column=1, sticky="ns")
         self.col_two_top.grid(row=1, column=1, sticky="nsew")
-        self.col_two_bot.grid(row=2, column=1, sticky="ns")
+        self.col_two_bot.grid(row=2, column=1, sticky="ns", rowspan=2)
+        self.col_two_bot_canv.grid(row=0, column=0, sticky="nsew")
+        self.col_two_bot_scroll.grid(row=0, column=1, sticky="ns")
+
         #self.col_one.grid_columnconfigure(1, weight=1)
         #self.col_two.grid_columnconfigure(1, weight=2)
         self.sw = root.winfo_reqwidth()
@@ -47,7 +60,7 @@ class Gui(tk.Frame):
 
 
         #get only folders, not files
-        self.file_tree = ttk.Treeview(self.col_one)
+        self.file_tree = ttk.Treeview(self.col_one_top)
         self.file_tree["columns"] = ("one", "two")
         self.file_tree.column("one", width=100)
         self.file_tree.column("two", width=100)
@@ -60,7 +73,7 @@ class Gui(tk.Frame):
         self.file_tree.insert("dir3", 3, text="sub dir 3", values=("3A", "3B"))
         self.file_tree.grid(row=0)
 
-        self.frame_tags = tk.Frame(self.col_one, bd=2, relief="ridge")
+        self.frame_tags = tk.Frame(self.col_one_bot_canv, bd=2, relief="ridge")
         self.frame_tags.grid(row=1, sticky="nsew")
         #self.frame_tags_scrolly = tk.Scrollbar(self.col_one, orient="vertical", command=self.frame_tags)
 
@@ -85,7 +98,7 @@ class Gui(tk.Frame):
 
 
     def populate_canvas(self, fname, thumb):
-        temp = tk.Canvas(self.col_two_bot, width=100, height=100)
+        temp = tk.Canvas(self.col_two_bot_canv, width=100, height=100)
         #temp.create_image((self.def_pos_x, self.def_pos_y), image=thumb)
         temp.create_image((50,25), image=thumb)
         #temp.create_text((self.def_pos_x, self.def_pos_y + 25), text=fname)
@@ -106,7 +119,7 @@ class Gui(tk.Frame):
         self.def2_row += 1
 
     def pop(self):
-        for i in range(5):
+        for i in range(25):
             self.populate_tags(strings("t_tag"), i)
         for i in range(20):
             self.populate_canvas(strings("t_fname"), self.img3)
