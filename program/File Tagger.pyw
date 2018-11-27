@@ -8,24 +8,22 @@ class Gui(tk.Frame):
         self.top_bar = tk.Frame(relief="raised")
         self.col_one = tk.Frame(master)
         self.col_two_top = tk.Frame(master)
-        self.col_two_bot = tk.Frame(master)
+        self.col_two_bot = tk.Frame(master, bd=2, relief="ridge")
         self.top_bar.grid(row=0, column=0, columnspan=5, sticky="ew")
-        self.col_one.grid(row=1, column=0, sticky="ns")
-        self.col_two_top.grid(row=1, column=1, sticky="nsew", columnspan=3)
-        self.col_two_bot.grid(row=2, column=1, columnspan=4, sticky="nsew")
+        self.col_one.grid(row=1, column=0, sticky="ns", rowspan=2)
+        self.col_two_top.grid(row=1, column=1, sticky="nsew")
+        self.col_two_bot.grid(row=2, column=1, sticky="ns")
         #self.col_one.grid_columnconfigure(1, weight=1)
         #self.col_two.grid_columnconfigure(1, weight=2)
         self.sw = root.winfo_reqwidth()
         self.sh = root.winfo_reqheight()
-        self.def_pos_x = 25
-        self.def_pos_y = 25
-        self.def_pos_y_t = 0
         self.def_row = 0
         self.def_col = 0
         self.def2_row = 0
         self.def2_col = 0
         self.def2_ar = []
         self.add_elements()
+        self.pop()
     def add_elements(self):
         self.menu = tk.Menubutton(self.top_bar, text=strings("m_file"), underline=0)
         self.menu.grid(row=0, column=0)
@@ -66,11 +64,6 @@ class Gui(tk.Frame):
         self.frame_tags.grid(row=1, sticky="nsew")
         #self.frame_tags_scrolly = tk.Scrollbar(self.col_one, orient="vertical", command=self.frame_tags)
 
-        #run populates on a different function <=
-        self.populate_tags(strings("t_tag"), 1)
-        self.populate_tags(strings("t_tag"), 3)
-        self.populate_tags(strings("t_tag"), 5)
-
 
         self.search_title = tk.Label(self.col_two_top, text=strings("l_search"))
         self.search_title.grid(row=0, column=0)
@@ -84,39 +77,39 @@ class Gui(tk.Frame):
 
         self.img0 = Image.new('RGB', (50, 50), (230,230,230))
         self.img0.save('test0.png')
-        self.img1 = tk.PhotoImage(file='test1.png')
+        #self.img1 = tk.PhotoImage(file='test1.png')
         #self.file_canvas.create_image((0,0), image=self.img1)
-        self.img2 = ImageTk.PhotoImage(Image.open('test2.png').resize((100,100), Image.ANTIALIAS))
+        self.img2 = ImageTk.PhotoImage(Image.open('test2.png').resize((50,50), Image.ANTIALIAS))
         self.img3 = ImageTk.PhotoImage(Image.open('test3.png').resize((50,50), Image.ANTIALIAS))
+        self.img1 = ImageTk.PhotoImage(Image.open('test1.png').resize((50,50), Image.ANTIALIAS))
 
-        self.populate_canvas(strings("t_fname"), self.img3)
-        self.populate_canvas(strings("t_fname2"), self.img3)
-        self.populate_canvas(strings("t_fname3"), self.img3)
 
     def populate_canvas(self, fname, thumb):
-        temp = tk.Canvas(self.col_two_bot)
+        temp = tk.Canvas(self.col_two_bot, width=100, height=100)
         #temp.create_image((self.def_pos_x, self.def_pos_y), image=thumb)
         temp.create_image((50,25), image=thumb)
         #temp.create_text((self.def_pos_x, self.def_pos_y + 25), text=fname)
         #temp.create_text((50,25), text=fname)
         t = str(self.def_row) + " " + str(self.def_col)
         temp.create_text((50,25), text=t)
+        temp.create_text((50,75), text=fname)
         temp.grid(row=self.def_row, column=self.def_col)
-        self.def_pos_x += 25
-        self.def_pos_y_t += 25
-        self.def_row += 1
-        if self.def_row >= 4:
-            self.def_row = 0
-        if self.def_pos_y_t % 100 == 0:
-            self.def_pos_y += 25
-            self.def_col += 1
+        self.def_col += 1
+        if self.def_col >= 5:
+            self.def_col = 0
+            self.def_row += 1
 
     def populate_tags(self, tag, num):
-        tk.Checkbutton(self.frame_tags, variable=self.def2_ar.append(0), onvalue=1, offvalue=0, text=self.def2_ar[self.def2_row]).grid(row=self.def2_row, column=0)
-        tk.Label(self.frame_tags, text=tag, relief="sunken").grid(row=self.def2_row, column=1)
-        tk.Label(self.frame_tags, text=str(num), relief="sunken").grid(row=self.def2_row, column=2)
+        tk.Checkbutton(self.frame_tags, relief="sunken", variable=self.def2_ar.append(0), onvalue=1, offvalue=0, text=self.def2_ar[self.def2_row]).grid(row=self.def2_row, column=0, sticky="ns")
+        tk.Label(self.frame_tags, text=tag, relief="sunken").grid(row=self.def2_row, column=1, sticky="ns")
+        tk.Label(self.frame_tags, text=str(num), relief="sunken").grid(row=self.def2_row, column=2, sticky="ns")
         self.def2_row += 1
 
+    def pop(self):
+        for i in range(5):
+            self.populate_tags(strings("t_tag"), i)
+        for i in range(20):
+            self.populate_canvas(strings("t_fname"), self.img3)
 
     def exit_func(self):
         self.quit()
