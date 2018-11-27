@@ -14,7 +14,7 @@ class Gui(tk.Frame):
         #self.col_two.grid_columnconfigure(1, weight=2)
         self.add_elements()
     def add_elements(self):
-        self.menu = tk.Menubutton(self.top_bar, text=strings("tm"), underline=0)
+        self.menu = tk.Menubutton(self.top_bar, text=strings("m_file"), underline=0)
         self.menu.grid(row=0, column=0)
         self.menu_sub = tk.Menu(self.menu, tearoff=0)
         self.menu['menu'] = self.menu_sub
@@ -22,7 +22,7 @@ class Gui(tk.Frame):
         self.menu_sub.add_command(label=strings("m2"), underline=0)
         self.menu_sub.add_command(label=strings("m3"), underline=0)
         self.menu_sub.add_separator()
-        self.menu_sub.add_command(label=strings("menu_exit"), command=self.exit_func)
+        self.menu_sub.add_command(label=strings("m_exit"), command=self.exit_func)
 
         #self.label_filler = tk.Label(self.col_one, text=strings("tl"))
         self.label_filler2 = tk.Label(self.col_one, text=strings("t2"))
@@ -64,11 +64,11 @@ def strings(s):
         "t3": "search",
         "t4": "files",
 
-        "tm": "File",
+        "m_file": "File",
         "m1": "menu1",
         "m2": "menu2",
         "m3": "menu3",
-        "menu_exit": "Exit",
+        "m_exit": "Exit",
 
     }
     return str.get(s)
