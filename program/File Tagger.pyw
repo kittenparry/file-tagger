@@ -1,5 +1,6 @@
 import tkinter as tk
 from PIL import Image, ImageTk
+from tkinter import tix
 
 from program.Strings import strings
 from program.Frames import Frames
@@ -16,6 +17,8 @@ class Gui(tk.Frame):
         #put below into a separate function
         #also a lot of numbers into something similar to strings
         #along with thumbs
+        #val("thumbs")
+        #val("sw") etc?
         self.sw = root.winfo_reqwidth()
         self.sh = root.winfo_reqheight()
         self.def_row = 0
@@ -45,7 +48,7 @@ class Gui(tk.Frame):
         self.img3 = ImageTk.PhotoImage(Image.open(self.thumbs + 'test3.png').resize((50,50), Image.ANTIALIAS))
         self.img1 = ImageTk.PhotoImage(Image.open(self.thumbs + 'test1.png').resize((50,50), Image.ANTIALIAS))
 
-
+        #TODO: no .py folder for files section
     def populate_canvas(self, fname, thumb):
         temp = tk.Canvas(self.Frames.col_two_bot_canv, width=100, height=100)
         #temp.create_image((self.def_pos_x, self.def_pos_y), image=thumb)
@@ -74,7 +77,7 @@ class Gui(tk.Frame):
             self.populate_canvas(strings("t_fname"), self.img3)
 
 if __name__ == '__main__':
-    root = tk.Tk()
+    root = tix.Tk()
     root.title("{} v{}".format(strings("title"), strings("ver")))
     w, h, p, d = root.winfo_screenwidth(), root.winfo_screenheight(), 250, 15
     #root.geometry("%dx%d+0+0" % (w, h)) <- use instead for fullscreen*
