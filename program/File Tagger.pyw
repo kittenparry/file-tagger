@@ -14,6 +14,12 @@ class Gui(tk.Frame):
         tk.Frame.__init__(self, master)
 
         self.Frames = Frames()
+
+        #db storing path to files as tags?
+        #tags = {
+        #   "tag1": {"path/to/file1", "path/to/file2"},
+        #   "tag2": ... } #^ does this even work?
+
         #put below into a separate function
         #also a lot of numbers into something similar to strings
         #along with thumbs

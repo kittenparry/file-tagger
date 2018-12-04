@@ -24,14 +24,13 @@ class Tree(tk.Frame):
         self.file_tree.grid(row=0)
         '''
 
-
         #self.path
 
         #self.path = "D:\pycharmworkspace\\file-tagger"
-        self.path = r"D:\\"
+        self.path = r"D:\Archive"
         self.onlyfolders =  [f for f in os.listdir(self.path) if os.path.isdir(os.path.join(self.path, f))]
         print(self.onlyfolders)
-        self.cl = tix.CheckList(F.col_one_top_canv, width=300, height=200)
+        self.cl = tix.CheckList(F.col_one_top_canv, width=300, height=200, browsecmd=self.selectItem)
         self.t1 = time.time()
         self.makeCheckList()
         print("Took %.1f seconds to load." % (time.time() - self.t1))
@@ -42,29 +41,16 @@ class Tree(tk.Frame):
             with os.scandir(path) as content:
                 for i, item in enumerate(content):
                     if item.is_dir():
-                        entry = "{}.Item{}".format(parent, i)
-                        self.cl.hlist.add(entry, text=item.name)
-                        self.cl.setstatus(entry, "off")
-                        self.check(entry, item.path)
+                        if not item.name == "$RECYCLE.BIN":
+                            entry = "{}.Item{}".format(parent, i)
+                            self.cl.hlist.add(entry, text=item.name)
+                            self.cl.setstatus(entry, "off")
+                            self.check(entry, item.path)
         except PermissionError:
             pass
-    '''
-    def check(self, parent, path):
-        #os.path.isdir here?
-        content = os.listdir(path)
-        for i, item in enumerate(content):
-            #full_path = os.path.join(path, item)  # item absolute path
-            full_path = os.path.join(path, item)
-            if os.path.isdir(full_path):
-                entry = "{}.Item{}".format(parent, i)  # item path in the tree
-                self.cl.hlist.add(entry, text=item)   # add item in the tree
-                self.cl.setstatus(entry, "off")
-                self.check(entry, full_path)
-                print(full_path)
-    '''
     def makeCheckList(self):  # no need of any extra argument here
         #self.cl = tix.CheckList(F.col_one_top_canv, browsecmd=self.selectItem)
-        self.cl.pack(fill='both',expand="yes")
+        self.cl.pack(fill='both', expand="yes")
         # add the root directory in the tree
         self.cl.hlist.add("CL1", text=self.path)
         self.cl.setstatus("CL1", "off")
@@ -75,5 +61,4 @@ class Tree(tk.Frame):
 
     def selectItem(self, item):
         print(self.cl.getstatus(item))
-
-
+        print(self.cl.getselection("on"))

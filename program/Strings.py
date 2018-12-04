@@ -6,11 +6,6 @@ def strings(s):
         "ver": "0.00",
         "thumbs": "thumbs\\",
 
-        "tl": "tree",
-        "t2": "tags",
-        "t3": "search",
-        "t4": "files",
-
         "m_file": "File",
         "m1": "menu1",
         "m2": "menu2",
