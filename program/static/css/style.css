@@ -5,3 +5,34 @@ body {
 div {
     margin:5px;
     }
+#div_main div {
+    border:1px solid #000;
+}
+#div_tree {
+    position:absolute;
+    top:1%;
+    left:1%;
+    width:30%;
+    height:55%;
+}
+#div_search {
+    position:absolute;
+    top:1%;
+    right:1%;
+    width:65%;
+    height:10%;
+}
+#div_tags {
+    position:absolute;
+    bottom:1%;
+    left:1%;
+    width:30%;
+    height:40%;
+}
+#div_files {
+    position:absolute;
+    bottom:1%;
+    right:1%;
+    width:65%;
+    height:85%;
+}
