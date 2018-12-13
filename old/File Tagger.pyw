@@ -19,6 +19,9 @@ class Gui(tk.Frame):
         #tags = {
         #   "tag1": {"path/to/file1", "path/to/file2"},
         #   "tag2": ... } #^ does this even work?
+		
+		#get the programming in cmd first
+		#then gui?
 
         #put below into a separate function
         #also a lot of numbers into something similar to strings
