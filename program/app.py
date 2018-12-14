@@ -14,7 +14,7 @@ def processor():
 tree_maker("└📁", path)
 @app.route('/')
 def main():
-    return render_template('main.html', title=title, files=files, tabs=tabs, ftab=ftab)
+    return render_template('main.html', title=title, ftab=ftab)
 
 if __name__ == '__main__':
     app.run(debug=True)

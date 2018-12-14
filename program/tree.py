@@ -1,8 +1,7 @@
 import os
 
-files = []
-tabs = []
 ftab = {}
+folder_paths = []
 def tree_maker(parent, path, entry = "0"):
     try:
         with os.scandir(path) as content:
@@ -18,8 +17,13 @@ def tree_maker(parent, path, entry = "0"):
                         #if parent == display:
                         #    val += 1
                         #val = int(entry2.split(".")[-1])
-                        val = len(entry2.split("."))
+                        if len(entry2.split(".")) == 2:
+                            val = 0
+                        else:
+                            val = len(entry2.split("."))
+                        #print(entry2)
                         #print(entry2.split("."), item.name)
+                        folder_paths.append(item.path)
                         ftab.update({"%s %s" % (display, item.name): val})
                         '''
                         files.append("%s %s" % (entry, item.name))
