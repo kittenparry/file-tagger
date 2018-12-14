@@ -1,7 +1,13 @@
 {% extends 'layout.html' %}
 {% block body %}
 <div id="div_main">
-    <div id="div_tree">file tree</div>
+    <div id="div_tree">
+        <ul class="list-group">
+            {% for file, tab in ftab.items() %}
+                <li class="list-group-item">{% for t in range(tab) %}&nbsp;&nbsp;{% endfor %}{{ file }}</li>
+            {% endfor %}
+        </ul>
+    </div>
     <div id="div_search">search</div>
     <div id="div_tags">tags</div>
     <div id="div_files">files</div>
