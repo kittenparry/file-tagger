@@ -1,7 +1,10 @@
 import os
 
 ftab = {}
-folder_paths = []
+idp = {}
+#try turning them into a dict again?
+#d = {ftab, folder_paths} ?
+
 def tree_maker(parent, path, entry = "0"):
     try:
         with os.scandir(path) as content:
@@ -23,8 +26,9 @@ def tree_maker(parent, path, entry = "0"):
                             val = len(entry2.split("."))
                         #print(entry2)
                         #print(entry2.split("."), item.name)
-                        folder_paths.append(item.path)
-                        ftab.update({"%s %s" % (display, item.name): val})
+                        #folder_paths.append(item.path)
+                        idp.update({entry2: item.path})
+                        ftab.update({"%s %s" % (display, item.name): entry2})
                         '''
                         files.append("%s %s" % (entry, item.name))
                         if parent == entry:

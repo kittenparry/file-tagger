@@ -2,22 +2,22 @@
 {% block body %}
 <div id="div_main">
     <div id="div_tree">
-        <ul class="list-group">
+        <div class="list-group">
             {% for file, tab in ftab.items() %}
-                <li class="list-group-item">
-                    <!--
-                    {% if tab > 0 %}
-                        <button data-toggle="collapse" data-target="#id">+</button>
-                    {% endif %}
-                    -->
-                    {% for t in range(tab) %}&nbsp;{% endfor %}
+                <a href="#" onclick="get_files('{{ tab }}')" class="list-group-item list-group-item-action">
+                    {% for t in range(split(tab)) %}&nbsp;{% endfor %}
                     {{ file }}
-                </li>
+                </a>
+            <script type="text/javascript">
+
+            </script>
             {% endfor %}
-        </ul>
+        </div>
     </div>
     <div id="div_search">search</div>
     <div id="div_tags">tags</div>
-    <div id="div_files">files</div>
+    <div id="div_files">
+        <iframe id="iframe_files" src="/files/"></iframe>
+    </div>
 </div>
 {% endblock %}

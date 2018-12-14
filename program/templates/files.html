@@ -1,0 +1,9 @@
+{% extends 'layout.html' %}
+{% block body %}
+    {{ idp[val] }}</br>
+    {% for thumb in thumbs %}
+        <div class="thumbnail">
+            <img src="{{ url_for('static', filename=thumb) }}"/>
+        </div>
+    {% endfor %}
+{% endblock %}
