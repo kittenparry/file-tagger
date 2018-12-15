@@ -5,8 +5,8 @@ from program.files import get_files
 app = Flask(__name__)
 
 title = "File Tagger"
-#path = r"D:\Archive"
-path = r"D:\0fromUbuntu2\Downloads"
+path = r"E:\from4chan\4chan"
+test_tags = ["screenshot", "meme", "high_resolution", "background", "food", "room"]
 @app.context_processor
 def processor():
     def split(e):
@@ -20,7 +20,7 @@ def processor():
 tree_maker("└📁", path)
 @app.route('/')
 def main():
-    return render_template('main.html', title=title, ftab=ftab, idp=idp)
+    return render_template('main.html', title=title, ftab=ftab, idp=idp, tags=test_tags)
 
 @app.route('/files/', defaults={'val': 'start'})
 @app.route('/files/<string:val>')

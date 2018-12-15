@@ -29,15 +29,6 @@ def tree_maker(parent, path, entry = "0"):
                         #folder_paths.append(item.path)
                         idp.update({entry2: item.path})
                         ftab.update({"%s %s" % (display, item.name): entry2})
-                        '''
-                        files.append("%s %s" % (entry, item.name))
-                        if parent == entry:
-                            tabs.append(True)
-                        else:
-                            tabs.append(False)
-                        '''
-                        #self.cl.hlist.add(entry, text=item.name)
-                        #self.cl.setstatus(entry, "off")
                         tree_maker(display, item.path, entry2)
     except PermissionError:
         pass

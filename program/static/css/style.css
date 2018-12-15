@@ -23,6 +23,7 @@ div {
     right:1%;
     width:65%;
     height:10%;
+    padding:1%;
 }
 #div_tags {
     position:absolute;
@@ -49,5 +50,12 @@ div {
 }
 .thumbnail {
     width:20%;
+    display:inline-block;
+}
+#input_search {
+    width:90%;
+    display:inline-block;
+}
+#button_search {
     display:inline-block;
 }

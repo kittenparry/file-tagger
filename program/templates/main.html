@@ -14,8 +14,19 @@
             {% endfor %}
         </div>
     </div>
-    <div id="div_search">search</div>
-    <div id="div_tags">tags</div>
+    <div id="div_search">
+        <form>
+            <input id="input_search" class="form-control" type="text" name="search"/>
+            <button id="button_search" type="submit" class="btn btn-primary">Search</button>
+        </form>
+    </div>
+    <div id="div_tags">
+        <ul class="list-group">
+            {% for tag in tags %}
+                <li class="list-group-item">{{ tag }}</li>
+            {% endfor %}
+        </ul>
+    </div>
     <div id="div_files">
         <iframe id="iframe_files" src="/files/"></iframe>
     </div>
