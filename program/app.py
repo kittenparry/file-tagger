@@ -15,7 +15,9 @@ def processor():
         else:
             v = len(e.split("."))
         return v
-    return dict(split=split)
+    def length(o):
+        return len(o)
+    return dict(split=split, len=length)
 
 tree_maker("└📁", path)
 @app.route('/')

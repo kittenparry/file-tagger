@@ -1,3 +1,6 @@
-save tags in a dictionary to a db?
-	{path: "tags as a string separated by spaces"}
-get all path from the dictionary with the tags to display tagged ones onscreen
+    save tags in a dictionary to a db?
+    	{path: "tags as a string separated by spaces"}
+    get all path from the dictionary with the tags to display tagged ones onscreen
+-    select checkbox with clicking over the image
+-        make bg blue like that of the button?
+-        invis checkbox?

@@ -6,7 +6,7 @@ div {
     margin:5px;
     }
 #div_main div {
-    border:1px solid #000;
+    border:1px solid #36454F;
 }
 #div_tree {
     position:absolute;
@@ -58,4 +58,13 @@ div {
 }
 #button_search {
     display:inline-block;
+}
+.thumb_check {
+    position:absolute;
+    left:5%;
+    bottom:5%;
+    display:none;
+}
+.thumb_cont {
+    position:relative;
 }
