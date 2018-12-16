@@ -16,14 +16,17 @@
     </div>
     <div id="div_search">
         <form>
-            <input id="input_search" class="form-control" type="text" name="search"/>
-            <button id="button_search" type="submit" class="btn btn-primary">Search</button>
+            <input id="input_search" class="form-control inlines" type="text" name="search"/>
+            <button id="button_search" type="submit" class="btn btn-primary inlines">Search</button>
         </form>
     </div>
     <div id="div_tags">
         <ul class="list-group">
-            {% for tag in tags %}
-                <li class="list-group-item">{{ tag }}</li>
+            {% for i in range(len(tags)) %}
+                <li class="list-group-item">
+                    <input type="checkbox" value="tag{{ i }}"/>
+                    {{ tags[i] }}
+                </li>
             {% endfor %}
         </ul>
     </div>

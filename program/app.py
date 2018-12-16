@@ -6,7 +6,7 @@ app = Flask(__name__)
 
 title = "File Tagger"
 path = r"E:\from4chan\4chan"
-test_tags = ["screenshot", "meme", "high_resolution", "background", "food", "room"]
+test_tags = ["screenshot", "meme", "high_resolution", "background", "food", "test_tags"]
 @app.context_processor
 def processor():
     def split(e):

@@ -50,14 +50,9 @@ div {
 }
 .thumbnail {
     width:20%;
-    display:inline-block;
 }
 #input_search {
     width:90%;
-    display:inline-block;
-}
-#button_search {
-    display:inline-block;
 }
 .thumb_check {
     position:absolute;
@@ -67,4 +62,10 @@ div {
 }
 .thumb_cont {
     position:relative;
+}
+#input_tag {
+    width:80%;
+}
+.inlines{
+    display:inline-block;
 }

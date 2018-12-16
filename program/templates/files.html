@@ -1,12 +1,15 @@
 {% extends 'layout.html' %}
 {% block body %}
-    {{ idp[val] }}</br>
+    {{ idp[val] }}<br/>
     <form>
     {% for i in range(len(thumbs)) %}
-        <div class="thumbnail thumb_cont">
+        <div class="thumbnail thumb_cont inlines">
             <input class="thumb_check" type="checkbox" name="" value="img{{ i }}"/>
             <img onclick="check_this(this)" src="{{ url_for('static', filename=thumbs[i]) }}"/>
         </div>
     {% endfor %}
+        <input id="input_tag" class="form-control inlines" type="text" name="text_tags"/>
+        <button id="button_tag_add" type="submit" class="btn btn-primary inlines">Add</button>
+        <button id="button_tag_remove" type="submit" class="btn btn-primary inlines">Remove</button>
     </form>
 {% endblock %}
