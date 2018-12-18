@@ -1,15 +1,18 @@
 {% extends 'layout.html' %}
 {% block body %}
     {{ idp[val] }}<br/>
-    <form>
+    <button class="btn btn-primary" onclick="sel_all({{ len(thumbs) }})">Select All</button><br/>
+    <form id="form_files" action="{{ url_for('handle_files') }}" method="post">
     {% for i in range(len(thumbs)) %}
         <div class="thumbnail thumb_cont inlines">
-            <input class="thumb_check" type="checkbox" name="" value="img{{ i }}"/>
-            <img onclick="check_this(this)" src="{{ url_for('static', filename=thumbs[i]) }}"/>
+            <input class="thumb_check inv" type="checkbox" name="images{{ i }}" value="img{{ i }}" id="check{{ i }}"/>
+            <img onclick="check_this(this, 0)" src="{{ url_for('static', filename=thumbs[i]) }}"/>
+            <input class="inv" name="path{{ i }}" value="{{ files[i] }}"/>
         </div>
     {% endfor %}
+        <input class="inv" name="lab_len" value="{{ len(thumbs) }}"/>
         <input id="input_tag" class="form-control inlines" type="text" name="text_tags"/>
-        <button id="button_tag_add" type="submit" class="btn btn-primary inlines">Add</button>
-        <button id="button_tag_remove" type="submit" class="btn btn-primary inlines">Remove</button>
+        <button id="button_tag_add" name="sub_add" value="sub_add" type="submit" class="btn btn-primary inlines">Add</button>
+        <button id="button_tag_remove" name="sub_rem" value="sub_rem" type="submit" class="btn btn-primary inlines">Remove</button>
     </form>
 {% endblock %}

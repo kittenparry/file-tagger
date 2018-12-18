@@ -58,7 +58,6 @@ div {
     position:absolute;
     left:5%;
     bottom:5%;
-    display:none;
 }
 .thumb_cont {
     position:relative;
@@ -68,4 +67,7 @@ div {
 }
 .inlines{
     display:inline-block;
+}
+.inv {
+    display:none;
 }
