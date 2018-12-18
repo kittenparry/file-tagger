@@ -2,20 +2,16 @@ from flask import Flask, render_template, request
 import json
 from program.tree import *
 from program.files import get_files
+from program.read_tags import read_tags
 
 app = Flask(__name__)
 
 title = "File Tagger"
 path = r"E:\from4chan\4chan"
 path_db = r"db\tags.json"
-#check if it crashes if the files doesn't exist
-with open(path_db) as di:
-    tag_dic = json.load(di)
-tags = []
-for v in tag_dic.values():
-    tags += v
-tags = list(set(tags))
-#probably rerun the function above when tags are edited
+tags = read_tags(path_db)
+tree_maker("└📁", path)
+
 @app.context_processor
 def processor():
     def split(e):
@@ -28,7 +24,6 @@ def processor():
         return len(o)
     return dict(split=split, len=length)
 
-tree_maker("└📁", path)
 @app.route('/')
 def main():
     return render_template('main.html', title=title, ftab=ftab, idp=idp, tags=tags)
@@ -58,6 +53,7 @@ def handle_files():
             path.append(request.form[f'path{i}'])
         except:
             pass
+    #discard one or the other below for they are useless
     try:
         a = request.form['sub_add']
     except:
