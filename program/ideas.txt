@@ -9,3 +9,4 @@
     files select all to absolute top left?
     files path to something like li fixed top 100% width?
     overall less padding/margin on buttons?
+    probably should re-render tags after changing them in the iframe

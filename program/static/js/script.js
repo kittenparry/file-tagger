@@ -11,7 +11,7 @@ function check_this(c){
         change_colour(c, false);
     }
 }
-function sel_all(n) {
+function sel_all(n){
     //maybe it's related to the function's placement in the file?
     /*s = document.getElementById("span_selected");
     console.log(s);
@@ -55,4 +55,8 @@ function get_tags(){
         }
     }
     change_files(sel_tags);
+}
+function get_search(){
+    sel_tags = document.getElementById('input_search').value.split(" ");
+    change_files(sel_tags)
 }
