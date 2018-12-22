@@ -58,5 +58,5 @@ function get_tags(){
 }
 function get_search(){
     sel_tags = document.getElementById('input_search').value.split(" ");
-    change_files(sel_tags)
+    change_files(sel_tags);
 }

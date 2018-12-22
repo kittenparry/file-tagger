@@ -1,6 +1,6 @@
-document.getElementById("input_search").addEventListener("keyup", function(event) {
+document.getElementById("input_search").addEventListener("keyup", function(event){
     event.preventDefault();
-    if (event.key === "Enter") {
+    if(event.key === "Enter"){
         document.getElementById("button_search").click();
     }
 });
