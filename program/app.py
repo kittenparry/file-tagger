@@ -35,16 +35,21 @@ def files(val):
     if val == "start":
         return "start here"
     elif val.startswith("["):
-        test = val[1:-1].split(",")
-        msg = ""
-        for n in test:
-            msg += n + "<br/>"
-        msg += f"<br/>{test}"
-        return msg
+        tags = val[1:-1].split(",")
+        with open(path_db) as di:
+            tag_dic = json.load(di)
+        path_files = []
+        for file, file_tags in tag_dic.items():
+            for t in tags:
+                if t in file_tags:
+                    path_files.append(file)
+        #is this a slow and an inefficient method?
+        path_files = list(set(path_files)) #to get rid of the duplicates
+        files, thumbs = get_files(path_files, 1)
     else:
         files, thumbs = get_files(idp[val])
-        thumbs = ['thumbs/' + thumb for thumb in thumbs]
-        return render_template('files.html', val=val, idp=idp, files=files,
+    thumbs = ['thumbs/' + thumb for thumb in thumbs]
+    return render_template('files.html', val=val, idp=idp, files=files,
                                thumbs=thumbs)
 
 @app.route('/handle_files', methods=['POST'])

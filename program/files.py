@@ -10,7 +10,8 @@ temp_dir = os.getcwd() + "\\static\\thumbs\\"
 f_img = [".jpg", ".png", ".jpeg", ".bmp", ".webp"]
 f_vid = [".webm", ".mp4", ".avi", ".flv", ".ts", ".mov", ".vmw", ".mkv", ".3gp", ".m4v", ".mpg"]
 formats = f_img + f_vid
-def get_files(path):
+#tags switch for directly getting filenames
+def get_files(path, tags = 0):
     if not os.path.exists(temp_dir):
         os.makedirs(temp_dir)
     #empty folder from previous thumbs
@@ -18,10 +19,13 @@ def get_files(path):
         os.unlink(os.path.join(temp_dir, d))
     #files = (file for file in os.listdir(path) if os.path.isfile(os.path.join(path, file)))
     files = []
-    for file in os.listdir(path):
-        for f in formats:
-            if file.endswith(f):
-                files.append(os.path.join(path, file))
+    if tags == 1:
+        files = list(path)
+    else:
+        for file in os.listdir(path):
+            for f in formats:
+                if file.endswith(f):
+                    files.append(os.path.join(path, file))
     thumbs = []
 
     for image in files:
