@@ -2,36 +2,16 @@
 {% block body %}
 <div id="div_main">
     <div id="div_tree">
-        <div class="list-group">
-            {% for file, tab in ftab.items() %}
-                <a href="#" onclick="get_files('{{ tab }}')" class="list-group-item list-group-item-action">
-                    {% for t in range(split(tab)) %}&nbsp;{% endfor %}
-                    {{ file }}
-                </a>
-            <script type="text/javascript">
-
-            </script>
-            {% endfor %}
-        </div>
+        {% include 'includes/tree.html' %}
     </div>
     <div id="div_search">
-        <form>
-            <input id="input_search" class="form-control inlines" type="text" name="search"/>
-            <button id="button_search" type="submit" class="btn btn-primary inlines">Search</button>
-        </form>
+        {% include 'includes/search.html' %}
     </div>
     <div id="div_tags">
-        <ul class="list-group">
-            {% for i in range(len(tags)) %}
-                <li class="list-group-item">
-                    <input type="checkbox" value="tag{{ i }}"/>
-                    {{ tags[i] }}
-                </li>
-            {% endfor %}
-        </ul>
+        {% include 'includes/tags.html' %}
     </div>
     <div id="div_files">
-        <iframe id="iframe_files" src="/files/"></iframe>
+        <iframe id="iframe_files" src="{{ url_for('files') }}"></iframe>
     </div>
 </div>
 {% endblock %}

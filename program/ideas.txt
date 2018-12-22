@@ -4,3 +4,8 @@
 -    select checkbox with clicking over the image
 -        make bg blue like that of the button?
 -        invis checkbox?
+    select tags by clicking and a display button below to display them
+        also a check all button? maybe instead display all tagged
+    files select all to absolute top left?
+    files path to something like li fixed top 100% width?
+    overall less padding/margin on buttons?

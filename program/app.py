@@ -1,6 +1,6 @@
 from flask import Flask, render_template, request
 import json
-from program.tree import *
+from program.tree import ftab, idp, tree_maker
 from program.files import get_files
 from program.read_tags import read_tags
 
@@ -26,17 +26,26 @@ def processor():
 
 @app.route('/')
 def main():
-    return render_template('main.html', title=title, ftab=ftab, idp=idp, tags=tags)
+    return render_template('main.html',title=title, ftab=ftab,
+                           idp=idp, tags=tags)
 
 @app.route('/files/', defaults={'val': 'start'})
 @app.route('/files/<string:val>')
 def files(val):
     if val == "start":
         return "start here"
+    elif val.startswith("["):
+        test = val[1:-1].split(",")
+        msg = ""
+        for n in test:
+            msg += n + "<br/>"
+        msg += f"<br/>{test}"
+        return msg
     else:
         files, thumbs = get_files(idp[val])
         thumbs = ['thumbs/' + thumb for thumb in thumbs]
-        return render_template('files.html', val=val, idp=idp, files=files, thumbs=thumbs)
+        return render_template('files.html', val=val, idp=idp, files=files,
+                               thumbs=thumbs)
 
 @app.route('/handle_files', methods=['POST'])
 def handle_files():

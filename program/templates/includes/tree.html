@@ -1,0 +1,8 @@
+<div class="list-group">
+    {% for file, tab in ftab.items() %}
+        <a href="#" onclick="get_files('{{ tab }}')" class="list-group-item list-group-item-action">
+            {% for t in range(split(tab)) %}&nbsp;{% endfor %}
+            {{ file }}
+        </a>
+    {% endfor %}
+</div>

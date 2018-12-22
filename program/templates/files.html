@@ -1,12 +1,12 @@
 {% extends 'layout.html' %}
 {% block body %}
     {{ idp[val] }}<br/>
-    <button class="btn btn-primary" onclick="sel_all({{ len(thumbs) }})">Select All</button><br/>
+    <button class="btn btn-primary" onclick="sel_all({{ len(thumbs) }})">Select All</button><span id="span_selected" class="">0</span><br/>
     <form id="form_files" action="{{ url_for('handle_files') }}" method="post">
     {% for i in range(len(thumbs)) %}
         <div class="thumbnail thumb_cont inlines">
             <input class="thumb_check inv" type="checkbox" name="images{{ i }}" value="img{{ i }}" id="check{{ i }}"/>
-            <img onclick="check_this(this, 0)" src="{{ url_for('static', filename=thumbs[i]) }}"/>
+            <img onclick="check_this(this)" src="{{ url_for('static', filename=thumbs[i]) }}"/>
             <input class="inv" name="path{{ i }}" value="{{ files[i] }}"/>
         </div>
     {% endfor %}

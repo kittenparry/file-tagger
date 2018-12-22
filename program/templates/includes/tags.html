@@ -1,0 +1,15 @@
+<form>
+    <ul class="list-group">
+        {% for i in range(len(tags)) %}
+            <li class="list-group-item">
+                <input class="form-check-input" type="checkbox" id="tag_check{{ i }}" name="tag{{ i }}" value="{{ tags[i][0] }}"/>
+                <label class="form-check-label" for="tag{{ i }}">
+                    {{ tags[i][0] }}
+                </label>
+                {{ tags[i][1] }}
+            </li>
+        {% endfor %}
+    </ul>
+    <input class="inv" id="tag_len" name="tag_len" value="{{ len(tags) }}"/>
+</form>
+<button onclick="get_tags()" id="button_tag_display" type="submit" class="btn btn-primary inlines">Display</button>
