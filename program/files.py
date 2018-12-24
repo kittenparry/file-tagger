@@ -49,6 +49,6 @@ def get_files(path, tags = 0):
         err_t += f"\t{e}\n"
         err_t += f"\t\t{p}\n"
     if err_c > 0:
-        with open(r"image_errors.txt", 'a') as f:
+        with open(r"image_errors.log", 'a') as f:
             f.write(err_t)
     return files, thumbs

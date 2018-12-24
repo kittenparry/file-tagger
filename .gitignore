@@ -3,4 +3,5 @@
 .gitattributes
 __pycache__
 thumbs
-image_errors.txt
+image_errors.log
+tags.json

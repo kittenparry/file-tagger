@@ -31,6 +31,8 @@ div {
     left:1%;
     width:30%;
     height:40%;
+    overflow:scroll;
+    white-space:nowrap;
 }
 #div_files {
     position:absolute;
@@ -70,4 +72,32 @@ div {
 }
 .inv {
     display:none;
+}
+.btn {
+    padding:2px;
+}
+#div_files_top {
+    position:absolute;
+    top:0;
+    left:0;
+    right:0;
+    width:100%;
+}
+#div_files_mid {
+    position:relative;
+    top:50px;
+    bottom:100px;
+}
+#div_files_tags {
+    border:1px solid #36454F;
+    position:fixed;
+    bottom:0;
+    left:0;
+    right:0;
+    background-color:#fff;
+    padding:1%;
+}
+#div_tags_bottom {
+    position:relative;
+    bottom:0;
 }
