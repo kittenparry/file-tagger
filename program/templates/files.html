@@ -2,7 +2,9 @@
 {% block body %}
     <div id="div_files_top">
         <span id="span_path" class="list-group-item">{{ idp[val] }}</span>
-        <button class="btn btn-primary" onclick="sel_all({{ len(thumbs) }})">Select All</button><span id="span_selected" class="">0</span>
+        {% if msg != "" %}
+            <span class="list-group-item">{{ msg }}</span>
+        {% endif %}
     </div>
     <div id="div_files_mid">
         <form id="form_files" action="{{ url_for('handle_files') }}" method="post">
@@ -14,11 +16,16 @@
             </div>
         {% endfor %}
             <input class="inv" name="lab_len" value="{{ len(thumbs) }}"/>
+            <input class="inv" name="files_val" value="{{ val }}"/>
             <div id="div_files_tags">
                 <input id="input_tag" class="form-control inlines" type="text" name="text_tags"/>
                 <button id="button_tag_add" name="sub_add" value="sub_add" type="submit" class="btn btn-primary inlines">Add</button>
                 <button id="button_tag_remove" name="sub_rem" value="sub_rem" type="submit" class="btn btn-primary inlines">Remove</button>
             </div>
         </form>
+        <div id="div_files_bot">
+            <button class="btn btn-primary" onclick="sel_all({{ len(thumbs) }})">Select All</button>
+            <span id="span_selected" class="">0</span>
+        </div>
     </div>
 {% endblock %}

@@ -81,7 +81,7 @@ div {
     top:0;
     left:0;
     right:0;
-    width:100%;
+    width:99%;
 }
 #div_files_mid {
     position:relative;
@@ -96,8 +96,21 @@ div {
     right:0;
     background-color:#fff;
     padding:1%;
+    z-index:9;
 }
 #div_tags_bottom {
     position:relative;
     bottom:0;
+}
+#div_files_bot {
+    border:1px solid #36454F;
+    background-color:#fff;
+    position:fixed;
+    bottom:7%;
+    left:0;
+    padding:1%;
+    z-index:8;
+}
+#span_path {
+    font-weight:bold;
 }

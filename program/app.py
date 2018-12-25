@@ -31,7 +31,7 @@ def main():
 
 @app.route('/files/', defaults={'val': 'start'})
 @app.route('/files/<string:val>')
-def files(val):
+def files(val, msg = ""):
     if val == "start":
         return "start here"
     elif val.startswith("["):
@@ -50,12 +50,13 @@ def files(val):
         files, thumbs = get_files(idp[val])
     thumbs = ['thumbs/' + thumb for thumb in thumbs]
     return render_template('files.html', val=val, idp=idp, files=files,
-                               thumbs=thumbs)
+                               thumbs=thumbs, msg=msg)
 
 @app.route('/handle_files', methods=['POST'])
 def handle_files():
     im = []
     path = []
+    val = request.form['files_val']
     #tag_dic = {}
     with open(path_db) as di: #get previous tags
         tag_dic = json.load(di)
@@ -82,13 +83,13 @@ def handle_files():
             tag_dic.update({p:[]})
     #if add button clicked
     if r is None:
-        msg = f"Added tags {t} to the images {im}."
+        ar = ["Added", "to"]
         for i in range(len(path)):
             tag_dic[path[i]] = list(set(tag_dic[path[i]] + t))
             #add tags to the path
             #remove duplicates (set())
     else:
-        msg = f"Removed tags {t} from the images {im}."
+        ar = ["Removed", "from"]
         for i in range(len(path)):
             try:
                 for tag in t:
@@ -96,13 +97,12 @@ def handle_files():
                         tag_dic[path[i]].remove(tag)
             except:
                 pass
-    for p in path:
-        msg += f"{p}\n"
 
+    msg = f"{ar[0]} tag(s) {', '.join(t)} {ar[1]} {len(im)} images."
     with open(path_db, 'w') as f:
         json.dump(tag_dic, f)
 
-    return msg
+    return files(val, msg)
 
 
 if __name__ == '__main__':
