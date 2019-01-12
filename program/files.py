@@ -8,47 +8,47 @@ sizes = [(240, 240),
          ]
 #temp_dir = os.getcwd().split(":\\")[0] + ":\\__file-tagger_temp\\"
 temp_dir = os.getcwd() + "\\static\\thumbs\\"
-f_img = [".jpg", ".png", ".jpeg", ".bmp", ".webp"]
-f_vid = [".webm", ".mp4", ".avi", ".flv", ".ts", ".mov", ".vmw", ".mkv", ".3gp", ".m4v", ".mpg"]
-formats = f_img + f_vid
+formats_image = [".jpg", ".png", ".jpeg", ".bmp", ".webp"]
+formats_video = [".webm", ".mp4", ".avi", ".flv", ".ts", ".mov", ".vmw", ".mkv", ".3gp", ".m4v", ".mpg"]
+formats = formats_image + formats_video
 #tags switch for directly getting filenames
 def get_files(path, tags = 0):
     if not os.path.exists(temp_dir):
         os.makedirs(temp_dir)
     #empty folder from previous thumbs
-    for d in os.listdir(temp_dir):
-        os.unlink(os.path.join(temp_dir, d))
+    for file in os.listdir(temp_dir):
+        os.unlink(os.path.join(temp_dir, file))
     #files = (file for file in os.listdir(path) if os.path.isfile(os.path.join(path, file)))
     files = []
     if tags == 1:
         files = list(path)
     else:
         for file in os.listdir(path):
-            for f in formats:
-                if file.endswith(f):
+            for format in formats:
+                if file.endswith(format):
                     files.append(os.path.join(path, file))
     thumbs = []
-    err = {}
-    err_t = time.strftime("%Y.%m.%d %H:%M:%S") + "\n"
-    err_c = 0
-    for image in files:
-        i = image.split("\\")[-1]
+    error = {}
+    error_time = time.strftime("%Y.%m.%d %H:%M:%S") + "\n"
+    error_count = 0
+    for image_file in files:
+        image_name = image_file.split("\\")[-1]
         #thumbs.append(i)
         for size in sizes:
             try:
-                im = Image.open(image)
-                im.thumbnail(size)
-                name = "thumb_%s_%s.jpg" % (i, "%d_%d" % (size))
-                thumbs.append(name)
-                im.save(r"%s%s" % (temp_dir, name))
+                image = Image.open(image_file)
+                image.thumbnail(size)
+                thumb_name = "thumb_%s_%s.jpg" % (image_name, "%d_%d" % (size))
+                thumbs.append(thumb_name)
+                image.save(r"%s%s" % (temp_dir, thumb_name))
             except Exception as e:
-                err_c += 1
-                err.update({str(e): image})
-    err_t = "" + err_t
-    for e, p in err.items():
-        err_t += f"\t{e}\n"
-        err_t += f"\t\t{p}\n"
-    if err_c > 0:
+                error_count += 1
+                error.update({str(e): image_file})
+    error_time = "" + error_time
+    for e, p in error.items():
+        error_time += f"\t{e}\n"
+        error_time += f"\t\t{p}\n"
+    if error_count > 0:
         with open(r"image_errors.log", 'a') as f:
-            f.write(err_t)
+            f.write(error_time)
     return files, thumbs

@@ -14,3 +14,5 @@
     path to the files above (outside) the iframe?
     don't accept empty "" text as tags
     on-click a folder from the tree display a loading of sorts?
+-    better named variables
+	search shouldn't be an "or" but instead an "and"
